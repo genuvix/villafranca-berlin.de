@@ -168,29 +168,46 @@ if (dateInput) {
   dateInput.max = maxDate.toISOString().split('T')[0];
 }
 
+// form?.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const name  = document.getElementById('res-name').value.trim();
+//   const email = document.getElementById('res-email').value.trim();
+//   const phone = document.getElementById('res-phone').value.trim();
+//   const date  = document.getElementById('res-date').value;
+//   const time  = document.getElementById('res-time').value;
+
+//   if (!name || !email || !phone || !date || !time) {
+//     showFormError(window.t ? window.t('form.error.required') : 'Please fill in all required fields.');
+//     return;
+//   }
+
+//   // Simulate submission
+//   const btn = form.querySelector('button[type="submit"]');
+//   btn.textContent = window.t ? window.t('form.processing') : 'Processing…';
+//   btn.disabled = true;
+
+//   setTimeout(() => {
+//     form.style.display = 'none';
+//     success.classList.add('show');
+//     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//   }, 1200);
+// });
 form?.addEventListener('submit', (e) => {
   e.preventDefault();
-  const name  = document.getElementById('res-name').value.trim();
-  const email = document.getElementById('res-email').value.trim();
-  const phone = document.getElementById('res-phone').value.trim();
-  const date  = document.getElementById('res-date').value;
-  const time  = document.getElementById('res-time').value;
 
-  if (!name || !email || !phone || !date || !time) {
-    showFormError(window.t ? window.t('form.error.required') : 'Please fill in all required fields.');
-    return;
-  }
-
-  // Simulate submission
   const btn = form.querySelector('button[type="submit"]');
   btn.textContent = window.t ? window.t('form.processing') : 'Processing…';
   btn.disabled = true;
 
   setTimeout(() => {
-    form.style.display = 'none';
-    success.classList.add('show');
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 1200);
+    btn.disabled = false;
+    btn.textContent = window.t ? window.t('form.submit.text') : 'Confirm Reservation';
+
+    showFormError(
+      "Reservation system is currently under maintenance. Our team is working to fix it as soon as possible. Please try again later."
+    );
+
+  }, 800);
 });
 
 function showFormError(msg) {
