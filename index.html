@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.home">Ristorante Villa Franca – Berlin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <noscript><style>body{visibility:visible!important;}</style></noscript>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <span class="preloader-vf">VF</span>
+      <div class="preloader-line"></div>
+    </div>
+  </div>
+
+  <!-- CURSOR -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-circle"></div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <a href="index.html">
+          <span class="logo-vf">Villa Franca</span>
+          <span class="logo-sub">RISTORANTE · BERLIN</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#reservation" data-i18n="nav.reserve">Reserve</a></li>
+        <li><a href="#seatplan" data-i18n="nav.seating">Seating</a></li>
+        <li><a href="menu.html" class="nav-cta" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <ul>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#reservation" data-i18n="nav.reserve">Reserve</a></li>
+        <li><a href="#seatplan" data-i18n="nav.seating">Seating</a></li>
+        <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-switch lang-switch-mobile" id="langSwitchMobile">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-grain"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow reveal">Schöneberg · Berlin</p>
+      <h1 class="hero-title reveal" data-i18n="hero.title">
+        <em>Italian</em> Elegance<br>in the Heart of Berlin
+      </h1>
+      <p class="hero-sub reveal" data-i18n="hero.sub">Private celebrations, fine dining & unforgettable evenings.<br>For 30 to 100 guests.</p>
+      <div class="hero-actions reveal">
+        <a href="#reservation" class="btn-gold" data-i18n="hero.cta.reserve">Reserve a Table</a>
+        <a href="menu.html" class="btn-ghost" data-i18n="hero.cta.menu">View Menu</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span data-i18n="hero.scroll">Scroll</span>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="20">0</span>
+        <span class="stat-label" data-i18n="stats.years">Years of Excellence</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="16000">0</span>
+        <span class="stat-label" data-i18n="stats.guests">Guests Served</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="75">0</span>
+        <span class="stat-label" data-i18n="stats.dishes">Signature Dishes</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <span class="stat-num" data-target="200">0</span>
+        <span class="stat-label" data-i18n="stats.wines">Wine Labels</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-image-col reveal">
+        <div class="about-img-frame">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Villa Franca interior" class="about-img">
+          <div class="about-img-accent"></div>
+        </div>
+        <div class="about-badge">
+          <span data-i18n="about.since">Since</span>
+          <strong>2000</strong>
+        </div>
+      </div>
+      <div class="about-text-col reveal">
+        <p class="section-eyebrow" data-i18n="about.eyebrow">Our Story</p>
+        <h2 class="section-title" data-i18n="about.title">A Symphony of<br><em>Italian Elegance</em></h2>
+        <div class="about-divider"></div>
+        <p class="about-body" data-i18n="about.body1">Step into Ristorante Villa Franca, where fine cuisine meets the art of Italian cooking. In an ambience of timeless elegance, we invite you to savour refined flavours crafted with passion and perfection.</p>
+        <p class="about-body" data-i18n="about.body2">Our menu offers a careful selection of classic and modern Italian delicacies celebrating the finest ingredients and artisanal skill — from handmade pasta to the perfect wood-fired pizza.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <i class="fa-solid fa-fire-burner"></i>
+            <span data-i18n="about.feature.pizza">Wood-fired Pizza</span>
+          </div>
+          <div class="about-feature">
+            <i class="fa-solid fa-leaf"></i>
+            <span data-i18n="about.feature.pasta">Fresh Daily Pasta</span>
+          </div>
+          <div class="about-feature">
+            <i class="fa-solid fa-wine-glass"></i>
+            <span data-i18n="about.feature.wine">Curated Wine List</span>
+          </div>
+          <div class="about-feature">
+            <i class="fa-solid fa-star"></i>
+            <span data-i18n="about.feature.events">Private Events</span>
+          </div>
+        </div>
+        <a href="menu.html" class="btn-gold" data-i18n="about.cta">Explore the Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVATION -->
+  <section id="reservation">
+    <div class="reservation-bg">
+      <div class="reservation-overlay"></div>
+    </div>
+    <div class="reservation-inner">
+      <div class="reservation-header reveal">
+        <p class="section-eyebrow light" data-i18n="reservation.eyebrow">Book Your Table</p>
+        <h2 class="section-title light" data-i18n="reservation.title">Reserve Your <em>Experience</em></h2>
+        <p class="reservation-note" data-i18n="reservation.hours">
+          <i class="fa-regular fa-clock"></i> Mon–Fri: 16:00–24:00 &nbsp;|&nbsp;
+          <i class="fa-regular fa-clock"></i> Weekends & Holidays: 12:00–24:00
+        </p>
+      </div>
+
+      <form class="reservation-form reveal" id="reservationForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="res-name" data-i18n="form.label.name">Full Name <span class="req">*</span></label>
+            <input data-i18n-placeholder="form.placeholder.name" type="text" id="res-name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="res-email" data-i18n="form.label.email">Email <span class="req">*</span></label>
+            <input data-i18n-placeholder="form.placeholder.email" type="email" id="res-email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="res-phone" data-i18n="form.label.phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="res-phone" placeholder="+49 30 …" required>
+          </div>
+          <div class="form-group">
+            <label for="res-date" data-i18n="form.label.date">Date <span class="req">*</span></label>
+            <input type="date" id="res-date" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="res-time" data-i18n="form.label.time">Time <span class="req">*</span></label>
+            <select id="res-time" required>
+              <option value="" data-i18n="form.select.time">— Select time —</option>
+              <option>12:00</option><option>12:30</option>
+              <option>13:00</option><option>13:30</option>
+              <option>14:00</option><option>14:30</option>
+              <option>16:00</option><option>16:30</option>
+              <option>17:00</option><option>17:30</option>
+              <option>18:00</option><option>18:30</option>
+              <option>19:00</option><option>19:30</option>
+              <option>20:00</option><option>20:30</option>
+              <option>21:00</option><option>21:30</option>
+              <option>22:00</option><option>22:30</option>
+              <option>23:00</option><option>23:30</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="form.label.guests">Guests <span class="req">*</span></label>
+            <div class="guest-counter">
+              <button type="button" class="guest-btn" id="guestMinus">−</button>
+              <span id="guestCount">2</span>
+              <button type="button" class="guest-btn" id="guestPlus">+</button>
+              <input type="hidden" id="res-guests" value="2">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label for="res-occasion" data-i18n="form.label.occasion">Occasion</label>
+          <div class="occasion-pills" id="occasionPills">
+            <button type="button" class="pill" data-val="" data-i18n="pill.none">No special occasion</button>
+            <button type="button" class="pill" data-val="Birthday" data-i18n="pill.birthday">Birthday</button>
+            <button type="button" class="pill" data-val="Anniversary" data-i18n="pill.anniversary">Anniversary</button>
+            <button type="button" class="pill" data-val="Business" data-i18n="pill.business">Business dinner</button>
+            <button type="button" class="pill" data-val="Engagement" data-i18n="pill.engagement">Engagement</button>
+            <button type="button" class="pill" data-val="Conference" data-i18n="pill.conference">Conference</button>
+          </div>
+          <input type="hidden" id="res-occasion" value="">
+        </div>
+
+        <div class="form-group full">
+          <label for="res-allergies" data-i18n="form.label.allergies">Dietary requirements / Allergies</label>
+          <textarea data-i18n-placeholder="form.placeholder.allergies" id="res-allergies" rows="3" placeholder="Vegetarian, gluten-free, nut allergy…"></textarea>
+        </div>
+
+        <div class="form-group full">
+          <label for="res-message" data-i18n="form.label.message">Special requests</label>
+          <textarea data-i18n-placeholder="form.placeholder.message" id="res-message" rows="3" placeholder="Decoration, high chair, seating preference…"></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-gold btn-full" data-i18n="form.submit">
+            <i class="fa-regular fa-calendar-check"></i> Confirm Reservation
+          </button>
+        </div>
+      </form>
+
+      <div class="reservation-success" id="resSuccess">
+        <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h3 data-i18n="success.title">Reservation Received!</h3>
+        <p data-i18n="success.body">Thank you. We'll confirm your booking within 24 hours at the email address provided.</p>
+        <a href="#" class="btn-gold" onclick="resetForm()" data-i18n="success.cta">Make another reservation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEAT PLAN -->
+  <section id="seatplan">
+    <div class="seatplan-inner">
+      <div class="seatplan-header reveal">
+        <p class="section-eyebrow" data-i18n="seatplan.eyebrow">Floor Plan</p>
+        <h2 class="section-title" data-i18n="seatplan.title">Our <em>Seating</em> Arrangement</h2>
+        <p class="seatplan-desc" data-i18n="seatplan.desc">Stylish rooms for 30 to 100 guests. Contact us to arrange your preferred layout for private events.</p>
+      </div>
+      <div class="seatplan-visual reveal">
+        <div class="seatplan-frame">
+          <img src="https://villafranca-berlin.de/img/entire.jpg" alt="Villa Franca restaurant seating plan" class="seatplan-img">
+        </div>
+      </div>
+      <div class="seatplan-cta reveal">
+        <p data-i18n="seatplan.cta">For specific seating arrangements and private event layouts, please <a href="#contact">contact us directly.</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-info reveal">
+        <p class="section-eyebrow" data-i18n="contact.eyebrow">Find Us</p>
+        <h2 class="section-title" data-i18n="contact.title">Come <em>Visit Us</em></h2>
+        <div class="contact-details">
+          <div class="contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong data-i18n="contact.label.address">Address</strong>
+              <span>Vorbergstraße 10, 10823 Berlin</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong data-i18n="contact.label.phone">Phone</strong>
+              <span><a href="tel:+493023907730">+49 30 23 90 77 30</a></span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <strong data-i18n="contact.label.email">Email</strong>
+              <span><a href="mailto:info@villafranca-berlin.de">info@villafranca-berlin.de</a></span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa-regular fa-clock"></i>
+            <div>
+              <strong data-i18n="contact.label.hours">Hours</strong>
+              <span data-i18n="contact.hours.weekday">Mon–Fri: 16:00–24:00</span>
+              <span data-i18n="contact.hours.weekend">Weekends: 12:00–24:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=100063453582260" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/villa_franca_berlin/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@ristoirante.villa.franca" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="contact-map reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.448039676664!2d13.35177157667924!3d52.4891288720531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a85195a975af61%3A0x420ec8a86c4e70b4!2sVilla%20Franca%20Berlin!5e0!3m2!1sen!2smk!4v1741786670525!5m2!1sen!2smk"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-vf">Villa Franca</span>
+        <span class="logo-sub" data-i18n="footer.brand.sub">RISTORANTE · BERLIN · SINCE 2000</span>
+      </div>
+      <div class="footer-links">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#reservation" data-i18n="nav.reserve">Reserve</a>
+        <a href="menu.html" data-i18n="nav.menu">Menu</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <p class="footer-copy" data-i18n="footer.copy">© 2025 Ristorante Villa Franca · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
