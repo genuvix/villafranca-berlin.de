@@ -5,13 +5,9 @@
    ============================================================ */
 
 // ── CONFIG ──
-// TODO: point this at the deployed API once it's live (no trailing slash).
-// Local ASP.NET dev server default from launchSettings.json:
-const MENU_API_BASE_URL = 'https://hostbuzz.app';
-
-// TODO: replace with Villa Franca's real restaurantId GUID.
-// Placeholder until the restaurant record exists / its ID is known.
-const RESTAURANT_ID = '0c536df0-21fd-495d-dca6-08decc548aee';
+// API_BASE_URL and RESTAURANT_ID are declared once in script.js (sourced
+// from config.js's window.VILLA_FRANCA_CONFIG) and reused here so both
+// pages share a single source of truth.
 
 const menuTabsEl = document.getElementById('menuTabs');
 const tabsWrap   = document.getElementById('menuTabsWrap');
@@ -138,7 +134,7 @@ function renderMenu(data) {
 async function loadMenu() {
   showMenuLoading();
   try {
-    const res = await fetch(`${MENU_API_BASE_URL}/api/menu/${RESTAURANT_ID}`, {
+    const res = await fetch(`${API_BASE_URL}/api/menu/${RESTAURANT_ID}`, {
       headers: { Accept: 'application/json' }
     });
     if (!res.ok) {
