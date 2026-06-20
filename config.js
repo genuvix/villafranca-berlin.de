@@ -7,13 +7,13 @@
 window.VILLA_FRANCA_CONFIG = {
   // TODO: point this at the deployed API once it's live (no trailing slash).
   // Local ASP.NET dev server default from launchSettings.json:
-  apiBaseUrl: 'https://localhost:7121',
+  apiBaseUrl: 'https://hostbuzz.app',
 
   // TODO: replace with Villa Franca's real restaurantId GUID from HostBuzz
   // (Restaurants table / owner dashboard). Reservations cannot be submitted
   // until this is a real GUID — script.js checks the format and blocks
   // submission with a clear console warning if it's still a placeholder.
-  restaurantId: 'REPLACE_WITH_RESTAURANT_ID',
+  restaurantId: '0c536df0-21fd-495d-dca6-08decc548aee',
 
   // Optional: only needed if this restaurant has more than one location and
   // this particular site should always book a specific one. Leave null to
