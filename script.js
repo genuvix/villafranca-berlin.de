@@ -163,7 +163,7 @@ document.querySelector('.pill')?.classList.add('active');
 const form    = document.getElementById('reservationForm');
 const success = document.getElementById('resSuccess');
 
-// Set min/max date to today .. +30 days
+// Set min date to today
 const dateInput = document.getElementById('res-date');
 if (dateInput) {
   const today = new Date();
@@ -173,9 +173,10 @@ if (dateInput) {
   dateInput.max = maxDate.toISOString().split('T')[0];
 }
 
-<<<<<<< HEAD
-// Work out the UTC offset Berlin is observing on a given calendar date
-// (handles CET/CEST so the API gets a correct ISO 8601 offset).
+// Compute the restaurant's local UTC offset (Europe/Berlin, handles CET/CEST)
+// for the given calendar date, so StartTime is sent as a correct ISO 8601
+// offset datetime rather than being silently interpreted as UTC or the
+// browser's local timezone.
 function getBerlinOffset(dateStr) {
   const probe = new Date(`${dateStr}T12:00:00Z`);
   const parts = new Intl.DateTimeFormat('en-US', {
@@ -194,127 +195,9 @@ function buildStartTimeIso(dateStr, timeStr) {
   return `${dateStr}T${timeStr}:00${getBerlinOffset(dateStr)}`;
 }
 
-=======
-const RESTAURANT_PHONE = '+49 30 23 90 77 30';
-const GUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-// ── Europe/Berlin UTC offset for a given calendar date ──
-// EU-wide DST rule: clocks go forward on the last Sunday of March, back on
-// the last Sunday of October. We need this so the time the guest picks
-// (which is always the restaurant's local time, e.g. "19:00") is sent to
-// the backend as an unambiguous ISO 8601 string with an explicit offset,
-// regardless of which timezone the guest's own browser is in.
-function getEuropeBerlinOffsetHours(year, monthIndex, day) {
-  function lastSundayUtc(y, monthIdx) {
-    const d = new Date(Date.UTC(y, monthIdx + 1, 0)); // last day of month
-    d.setUTCDate(d.getUTCDate() - d.getUTCDay());      // walk back to Sunday
-    return d;
-  }
-  const dstStart = lastSundayUtc(year, 2);  // last Sunday of March
-  const dstEnd   = lastSundayUtc(year, 9);  // last Sunday of October
-  const probe    = new Date(Date.UTC(year, monthIndex, day));
-  return (probe >= dstStart && probe < dstEnd) ? 2 : 1; // CEST : CET
-}
-
-// Combine the <input type="date"> and <select> time into the ISO 8601
-// string with explicit offset the backend expects, e.g. "2026-06-15T19:00:00+02:00".
-function buildStartTimeIso(dateStr, timeStr) {
-  const [y, m, d]   = dateStr.split('-').map(Number);
-  const [hh, mm]    = timeStr.split(':').map(Number);
-  const offsetHours = getEuropeBerlinOffsetHours(y, m - 1, d);
-  const pad2 = n => String(n).padStart(2, '0');
-  return `${y}-${pad2(m)}-${pad2(d)}T${pad2(hh)}:${pad2(mm)}:00+${pad2(offsetHours)}:00`;
-}
-
-// The backend's *Utc fields are plain DateTime values serialized without a
-// trailing "Z" or offset. Treat them as UTC explicitly when parsing.
-function parseUtc(value) {
-  if (!value) return null;
-  const hasOffset = /Z$|[+-]\d\d:\d\d$/.test(value);
-  return new Date(hasOffset ? value : value + 'Z');
-}
-
-function buildReservationPayload() {
-  const cfg = window.VILLA_FRANCA_CONFIG || {};
-
-  const firstName = document.getElementById('res-firstname').value.trim();
-  const lastName  = document.getElementById('res-lastname').value.trim();
-  const email     = document.getElementById('res-email').value.trim();
-  const phone     = document.getElementById('res-phone').value.trim();
-  const date      = document.getElementById('res-date').value;
-  const time      = document.getElementById('res-time').value;
-  const guests    = parseInt(document.getElementById('res-guests').value, 10) || 1;
-  const occasion  = document.getElementById('res-occasion').value;
-  const allergies = document.getElementById('res-allergies').value.trim();
-  const message   = document.getElementById('res-message').value.trim();
-  const marketing = document.getElementById('res-marketing')?.checked || false;
-
-  // The backend only has a single free-text Notes field, so fold the
-  // occasion / allergy / message inputs into one labelled block.
-  const noteParts = [];
-  if (occasion)  noteParts.push(`Occasion: ${occasion}`);
-  if (allergies) noteParts.push(`Dietary requirements / allergies: ${allergies}`);
-  if (message)   noteParts.push(`Special requests: ${message}`);
-  const notes = noteParts.join('\n').slice(0, 1000);
-
-  const payload = {
-    restaurantId: cfg.restaurantId,
-    firstName,
-    startTime: buildStartTimeIso(date, time),
-    partySize: guests,
-    marketingConsent: marketing
-  };
-
-  if (lastName) payload.lastName = lastName;
-  if (email)    payload.email = email;
-  if (phone)    payload.phone = phone;
-  if (notes)    payload.notes = notes;
-  if (cfg.restaurantLocationId) payload.restaurantLocationId = cfg.restaurantLocationId;
-
-  return payload;
-}
-
-// Translates an API failure (HTTP status + JSON body, if any) into a
-// guest-facing message. Prefers the backend's own error text when present,
-// since it's already specific (e.g. "That time slot is no longer available").
-function extractErrorMessage(status, data) {
-  if (data) {
-    if (Array.isArray(data.errors) && data.errors.length) return data.errors.join(' ');
-    if (typeof data.error === 'string' && data.error)     return data.error;
-  }
-  switch (status) {
-    case 400: return 'Some details on the form look invalid. Please check the date, time and contact details and try again.';
-    case 403: return `This website isn't currently authorised to take reservations for this restaurant. Please call us at ${RESTAURANT_PHONE}.`;
-    case 404: return `We couldn't find this restaurant in our booking system. Please call us at ${RESTAURANT_PHONE}.`;
-    case 409: return 'That time slot is no longer available. Please choose a different time.';
-    default:  return `Something went wrong while submitting your reservation. Please try again, or call us at ${RESTAURANT_PHONE}.`;
-  }
-}
-
-function showReservationSuccess(data) {
-  form.style.display = 'none';
-
-  const codeEl    = document.getElementById('successCode');
-  const detailsEl = document.getElementById('successDetails');
-
-  if (data && codeEl)    codeEl.textContent = data.confirmationCode || '';
-  if (data && detailsEl) {
-    const when = parseUtc(data.startTimeUtc);
-    const whenText = when
-      ? when.toLocaleString(undefined, { dateStyle: 'long', timeStyle: 'short' })
-      : '';
-    detailsEl.textContent = [data.locationName, whenText, data.partySize ? `${data.partySize} guests` : '']
-      .filter(Boolean)
-      .join(' · ');
-  }
-
-  success.classList.add('show');
-  success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
->>>>>>> 0a456e8ce5755d5fbca835131daa3c21f7461405
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   const name      = document.getElementById('res-name').value.trim();
   const email     = document.getElementById('res-email').value.trim();
   const phone     = document.getElementById('res-phone').value.trim();
@@ -334,8 +217,6 @@ form?.addEventListener('submit', async (e) => {
   const firstName = nameParts.shift();
   const lastName  = nameParts.join(' ');
 
-  // The backend only has a single free-text Notes field — fold the
-  // occasion/allergies/message inputs into it.
   const noteParts = [];
   if (occasion)  noteParts.push(`Occasion: ${occasion}`);
   if (allergies) noteParts.push(`Dietary/Allergies: ${allergies}`);
@@ -353,40 +234,12 @@ form?.addEventListener('submit', async (e) => {
     MarketingConsent: false
   };
 
-<<<<<<< HEAD
   const btn = form.querySelector('button[type="submit"]');
   const originalBtnHtml = btn.innerHTML;
   btn.textContent = window.t ? window.t('form.processing') : 'Processing…';
-=======
-  const cfg          = window.VILLA_FRANCA_CONFIG || {};
-  const btn           = form.querySelector('button[type="submit"]');
-  const originalLabel = btn.innerHTML;
-
-  // Mirror the `required` attributes in case a browser lets the submit
-  // through anyway (e.g. via Enter on an unsupported input type).
-  const firstName = document.getElementById('res-firstname').value.trim();
-  const email      = document.getElementById('res-email').value.trim();
-  const phone      = document.getElementById('res-phone').value.trim();
-  const date       = document.getElementById('res-date').value;
-  const time       = document.getElementById('res-time').value;
-
-  if (!firstName || !email || !phone || !date || !time) {
-    showFormError(window.t ? window.t('form.error.required') : 'Please fill in all required fields.');
-    return;
-  }
-
-  if (!cfg.apiBaseUrl || !GUID_RE.test(cfg.restaurantId || '')) {
-    console.error('VILLA_FRANCA_CONFIG is missing or still has placeholder values — check config.js (apiBaseUrl / restaurantId).');
-    showFormError(`Online reservations are temporarily unavailable. Please call us at ${RESTAURANT_PHONE}.`);
-    return;
-  }
-
->>>>>>> 0a456e8ce5755d5fbca835131daa3c21f7461405
   btn.disabled = true;
-  btn.textContent = window.t ? window.t('form.processing') : 'Processing…';
 
   try {
-<<<<<<< HEAD
     const res = await fetch(`${API_BASE_URL}/api/reservations`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -423,29 +276,6 @@ form?.addEventListener('submit', async (e) => {
     showFormError('Could not reach the reservation service. Please check your connection and try again.');
     btn.innerHTML = originalBtnHtml;
     btn.disabled = false;
-=======
-    const response = await fetch(`${cfg.apiBaseUrl}/api/reservations`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(buildReservationPayload())
-    });
-
-    let data = null;
-    try { data = await response.json(); } catch (_) { /* empty or non-JSON body */ }
-
-    if (response.ok) {
-      showReservationSuccess(data);
-    } else {
-      showFormError(extractErrorMessage(response.status, data));
-      btn.disabled = false;
-      btn.innerHTML = originalLabel;
-    }
-  } catch (networkErr) {
-    console.error('Reservation request failed:', networkErr);
-    showFormError(`We couldn't reach the reservation system. Please check your connection, or call us at ${RESTAURANT_PHONE}.`);
-    btn.disabled = false;
-    btn.innerHTML = originalLabel;
->>>>>>> 0a456e8ce5755d5fbca835131daa3c21f7461405
   }
 });
 
@@ -458,7 +288,7 @@ function showFormError(msg) {
     form.appendChild(err);
   }
   err.textContent = msg;
-  setTimeout(() => err.remove(), 6000);
+  setTimeout(() => err.remove(), 4000);
 }
 
 function resetForm() {
@@ -469,8 +299,6 @@ function resetForm() {
     if (guestInput) guestInput.value = 2;
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
     document.querySelector('.pill')?.classList.add('active');
-    const occasionInput = document.getElementById('res-occasion');
-    if (occasionInput) occasionInput.value = '';
     const btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.textContent = window.t ? window.t('form.submit.text') : 'Confirm Reservation'; btn.disabled = false; }
     success.classList.remove('show');

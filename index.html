@@ -172,29 +172,25 @@
       <form class="reservation-form reveal" id="reservationForm" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label for="res-firstname" data-i18n="form.label.firstname">First Name <span class="req">*</span></label>
-            <input data-i18n-placeholder="form.placeholder.firstname" type="text" id="res-firstname" placeholder="First name" required>
+            <label for="res-name" data-i18n="form.label.name">Full Name <span class="req">*</span></label>
+            <input data-i18n-placeholder="form.placeholder.name" type="text" id="res-name" placeholder="Your name" required>
           </div>
-          <div class="form-group">
-            <label for="res-lastname" data-i18n="form.label.lastname">Last Name</label>
-            <input data-i18n-placeholder="form.placeholder.lastname" type="text" id="res-lastname" placeholder="Last name">
-          </div>
-        </div>
-        <div class="form-row">
           <div class="form-group">
             <label for="res-email" data-i18n="form.label.email">Email <span class="req">*</span></label>
             <input data-i18n-placeholder="form.placeholder.email" type="email" id="res-email" placeholder="your@email.com" required>
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group">
             <label for="res-phone" data-i18n="form.label.phone">Phone <span class="req">*</span></label>
             <input type="tel" id="res-phone" placeholder="+49 30 …" required>
           </div>
-        </div>
-        <div class="form-row">
           <div class="form-group">
             <label for="res-date" data-i18n="form.label.date">Date <span class="req">*</span></label>
             <input type="date" id="res-date" required>
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group">
             <label for="res-time" data-i18n="form.label.time">Time <span class="req">*</span></label>
             <select id="res-time" required>
@@ -212,15 +208,14 @@
               <option>23:00</option><option>23:30</option>
             </select>
           </div>
-        </div>
-
-        <div class="form-group full">
-          <label data-i18n="form.label.guests">Guests <span class="req">*</span></label>
-          <div class="guest-counter">
-            <button type="button" class="guest-btn" id="guestMinus">−</button>
-            <span id="guestCount">2</span>
-            <button type="button" class="guest-btn" id="guestPlus">+</button>
-            <input type="hidden" id="res-guests" value="2">
+          <div class="form-group">
+            <label data-i18n="form.label.guests">Guests <span class="req">*</span></label>
+            <div class="guest-counter">
+              <button type="button" class="guest-btn" id="guestMinus">−</button>
+              <span id="guestCount">2</span>
+              <button type="button" class="guest-btn" id="guestPlus">+</button>
+              <input type="hidden" id="res-guests" value="2">
+            </div>
           </div>
         </div>
 
@@ -247,13 +242,6 @@
           <textarea data-i18n-placeholder="form.placeholder.message" id="res-message" rows="3" placeholder="Decoration, high chair, seating preference…"></textarea>
         </div>
 
-        <div class="form-group full">
-          <label for="res-marketing" style="display:flex;align-items:center;gap:8px;font-weight:400;cursor:pointer;">
-            <input type="checkbox" id="res-marketing" style="width:16px;height:16px;flex:none;">
-            <span data-i18n="form.label.marketing">I'd like to receive news and special offers by email.</span>
-          </label>
-        </div>
-
         <div class="form-submit">
           <button type="submit" class="btn-gold btn-full" data-i18n="form.submit">
             <i class="fa-regular fa-calendar-check"></i> Confirm Reservation
@@ -265,15 +253,7 @@
         <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
         <h3 data-i18n="success.title">Reservation Received!</h3>
         <p data-i18n="success.body">Thank you. We'll confirm your booking within 24 hours at the email address provided.</p>
-<<<<<<< HEAD
         <p class="success-confirmation" id="resConfirmationCode" style="display:none;"></p>
-=======
-        <p style="font-size:14px;opacity:0.85;margin:4px 0;">
-          <span data-i18n="success.code.label">Confirmation code:</span>
-          <strong id="successCode"></strong>
-        </p>
-        <p id="successDetails" style="font-size:14px;opacity:0.85;margin:4px 0 16px;"></p>
->>>>>>> 0a456e8ce5755d5fbca835131daa3c21f7461405
         <a href="#" class="btn-gold" onclick="resetForm()" data-i18n="success.cta">Make another reservation</a>
       </div>
     </div>
@@ -369,7 +349,6 @@
 
   <script src="config.js"></script>
   <script src="i18n.js"></script>
-  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
