@@ -2,6 +2,11 @@
    VILLA FRANCA – Main JavaScript
    ============================================================ */
 
+// ── CONFIG ──
+// Shared across pages via config.js (window.VILLA_FRANCA_CONFIG).
+const API_BASE_URL  = (window.VILLA_FRANCA_CONFIG && window.VILLA_FRANCA_CONFIG.apiBaseUrl) || 'https://localhost:7121';
+const RESTAURANT_ID = (window.VILLA_FRANCA_CONFIG && window.VILLA_FRANCA_CONFIG.restaurantId) || 'REPLACE_WITH_RESTAURANT_ID';
+
 // ── PRELOADER ──
 window.addEventListener('load', () => {
   setTimeout(() => {
@@ -168,46 +173,109 @@ if (dateInput) {
   dateInput.max = maxDate.toISOString().split('T')[0];
 }
 
-// form?.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const name  = document.getElementById('res-name').value.trim();
-//   const email = document.getElementById('res-email').value.trim();
-//   const phone = document.getElementById('res-phone').value.trim();
-//   const date  = document.getElementById('res-date').value;
-//   const time  = document.getElementById('res-time').value;
+// Work out the UTC offset Berlin is observing on a given calendar date
+// (handles CET/CEST so the API gets a correct ISO 8601 offset).
+function getBerlinOffset(dateStr) {
+  const probe = new Date(`${dateStr}T12:00:00Z`);
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Berlin',
+    timeZoneName: 'shortOffset'
+  }).formatToParts(probe);
+  const tzPart = parts.find(p => p.type === 'timeZoneName');
+  const match = tzPart && tzPart.value.match(/GMT([+-]\d+)/);
+  const hours = match ? parseInt(match[1], 10) : 1;
+  const sign = hours >= 0 ? '+' : '-';
+  const abs = String(Math.abs(hours)).padStart(2, '0');
+  return `${sign}${abs}:00`;
+}
 
-//   if (!name || !email || !phone || !date || !time) {
-//     showFormError(window.t ? window.t('form.error.required') : 'Please fill in all required fields.');
-//     return;
-//   }
+function buildStartTimeIso(dateStr, timeStr) {
+  return `${dateStr}T${timeStr}:00${getBerlinOffset(dateStr)}`;
+}
 
-//   // Simulate submission
-//   const btn = form.querySelector('button[type="submit"]');
-//   btn.textContent = window.t ? window.t('form.processing') : 'Processing…';
-//   btn.disabled = true;
-
-//   setTimeout(() => {
-//     form.style.display = 'none';
-//     success.classList.add('show');
-//     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//   }, 1200);
-// });
-form?.addEventListener('submit', (e) => {
+form?.addEventListener('submit', async (e) => {
   e.preventDefault();
+  const name      = document.getElementById('res-name').value.trim();
+  const email     = document.getElementById('res-email').value.trim();
+  const phone     = document.getElementById('res-phone').value.trim();
+  const date      = document.getElementById('res-date').value;
+  const time      = document.getElementById('res-time').value;
+  const guests    = parseInt(document.getElementById('res-guests').value, 10) || 1;
+  const occasion  = document.getElementById('res-occasion').value.trim();
+  const allergies = document.getElementById('res-allergies').value.trim();
+  const message   = document.getElementById('res-message').value.trim();
+
+  if (!name || !email || !phone || !date || !time) {
+    showFormError(window.t ? window.t('form.error.required') : 'Please fill in all required fields.');
+    return;
+  }
+
+  const nameParts = name.split(/\s+/);
+  const firstName = nameParts.shift();
+  const lastName  = nameParts.join(' ');
+
+  // The backend only has a single free-text Notes field — fold the
+  // occasion/allergies/message inputs into it.
+  const noteParts = [];
+  if (occasion)  noteParts.push(`Occasion: ${occasion}`);
+  if (allergies) noteParts.push(`Dietary/Allergies: ${allergies}`);
+  if (message)   noteParts.push(`Special requests: ${message}`);
+
+  const payload = {
+    RestaurantId: RESTAURANT_ID,
+    FirstName: firstName,
+    LastName: lastName || null,
+    Email: email,
+    Phone: phone,
+    StartTime: buildStartTimeIso(date, time),
+    PartySize: guests,
+    Notes: noteParts.join(' | ') || null,
+    MarketingConsent: false
+  };
 
   const btn = form.querySelector('button[type="submit"]');
+  const originalBtnHtml = btn.innerHTML;
   btn.textContent = window.t ? window.t('form.processing') : 'Processing…';
   btn.disabled = true;
 
-  setTimeout(() => {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/reservations`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      const msg = (data && (data.error || (Array.isArray(data.errors) && data.errors.join(' '))))
+        || 'Something went wrong submitting your reservation. Please try again.';
+      showFormError(msg);
+      btn.innerHTML = originalBtnHtml;
+      btn.disabled = false;
+      return;
+    }
+
+    const confirmationCode = data.confirmationCode || data.ConfirmationCode;
+    const codeEl = document.getElementById('resConfirmationCode');
+    if (codeEl) {
+      if (confirmationCode) {
+        codeEl.textContent = `Confirmation code: ${confirmationCode}`;
+        codeEl.style.display = '';
+      } else {
+        codeEl.style.display = 'none';
+      }
+    }
+
+    form.style.display = 'none';
+    success.classList.add('show');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (err) {
+    console.error('Reservation request failed:', err);
+    showFormError('Could not reach the reservation service. Please check your connection and try again.');
+    btn.innerHTML = originalBtnHtml;
     btn.disabled = false;
-    btn.textContent = window.t ? window.t('form.submit.text') : 'Confirm Reservation';
-
-    showFormError(
-      "Reservation system is currently under maintenance. Our team is working to fix it as soon as possible. Please try again later."
-    );
-
-  }, 800);
+  }
 });
 
 function showFormError(msg) {
