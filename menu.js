@@ -134,7 +134,7 @@ function renderMenu(data) {
 async function loadMenu() {
   showMenuLoading();
   try {
-    const res = await fetch(`${API_BASE_URL}/api/menu/${RESTAURANT_ID}`, {
+    const res = await fetch(`${apiBaseUrl}/api/menu/${restaurantId}`, {
       headers: { Accept: 'application/json' }
     });
     if (!res.ok) {
