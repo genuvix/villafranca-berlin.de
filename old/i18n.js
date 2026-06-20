@@ -84,10 +84,6 @@
       "seatplan.title": "Our <em>Seating</em> Arrangement",
       "seatplan.desc": "Stylish rooms for 30 to 100 guests. Contact us to arrange your preferred layout for private events.",
       "seatplan.cta": "For specific seating arrangements and private event layouts, please <a href=\"#contact\">contact us directly.</a>",
-      "seatplan.loading": "Loading seating plan…",
-      "seatplan.error": "The seating plan couldn't be loaded right now. Please contact us for layout details.",
-      "seatplan.legend.indoor": "Indoor",
-      "seatplan.legend.outdoor": "Outdoor",
 
       /* CONTACT */
       "contact.eyebrow": "Find Us",
@@ -345,10 +341,6 @@
       "seatplan.title": "Unsere <em>Sitzordnung</em>",
       "seatplan.desc": "Stilvolle Räume für 30 bis 100 Gäste. Kontaktieren Sie uns, um Ihr bevorzugtes Layout für private Veranstaltungen zu planen.",
       "seatplan.cta": "Für spezifische Sitzanordnungen und Layouts für private Veranstaltungen <a href=\"#contact\">kontaktieren Sie uns bitte direkt.</a>",
-      "seatplan.loading": "Sitzplan wird geladen…",
-      "seatplan.error": "Der Sitzplan konnte derzeit nicht geladen werden. Bitte kontaktieren Sie uns für Details zum Raumplan.",
-      "seatplan.legend.indoor": "Innen",
-      "seatplan.legend.outdoor": "Außen",
 
       /* CONTACT */
       "contact.eyebrow": "Finden Sie uns",

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.menu">Menu – Ristorante Villa Franca</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="menu.css">
+  <noscript><style>body{visibility:visible!important;}</style></noscript>
+</head>
+<body class="menu-page">
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-circle"></div>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <a href="index.html">
+          <span class="logo-vf">Villa Franca</span>
+          <span class="logo-sub">RISTORANTE · BERLIN</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+        <li><a href="index.html#reservation" data-i18n="nav.reserve">Reserve</a></li>
+        <li><a href="index.html#seatplan" data-i18n="nav.seating">Seating</a></li>
+        <li><a href="menu.html" class="nav-cta active" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <ul>
+        <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+        <li><a href="index.html#reservation" data-i18n="nav.reserve">Reserve</a></li>
+        <li><a href="index.html#seatplan" data-i18n="nav.seating">Seating</a></li>
+        <li><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
+        <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-switch lang-switch-mobile" id="langSwitchMobile">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MENU HERO -->
+  <section class="menu-hero">
+    <div class="menu-hero-bg"></div>
+    <div class="menu-hero-content">
+      <p class="section-eyebrow light reveal" data-i18n="menuhero.eyebrow">Our Culinary Journey</p>
+      <h1 class="menu-hero-title reveal" data-i18n="menuhero.title">The <em>Menu</em></h1>
+      <p class="menu-hero-sub reveal" data-i18n="menuhero.sub">Authentic Italian cuisine crafted with the finest ingredients</p>
+    </div>
+  </section>
+
+  <!-- MENU NAV TABS (populated by menu.js from the API) -->
+  <div class="menu-tabs-wrap" id="menuTabsWrap">
+    <div class="menu-tabs" id="menuTabs"></div>
+  </div>
+
+  <!-- MENU CONTENT (populated by menu.js from the API) -->
+  <main class="menu-main">
+    <p class="menu-loading">Loading menu…</p>
+  </main>
+
+  <!-- RESERVE CTA -->
+  <section class="menu-reserve-cta">
+    <div class="menu-cta-inner">
+      <p class="section-eyebrow light" data-i18n="reservecta.eyebrow">Ready to dine?</p>
+      <h2 class="section-title light" data-i18n="reservecta.title">Reserve Your <em>Table</em></h2>
+      <a href="index.html#reservation" class="btn-gold" data-i18n="reservecta.button">Make a Reservation</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-vf">Villa Franca</span>
+        <span class="logo-sub" data-i18n="footer.brand.sub">RISTORANTE · BERLIN · SINCE 2000</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#about" data-i18n="nav.about">About</a>
+        <a href="index.html#reservation" data-i18n="nav.reserve">Reserve</a>
+        <a href="menu.html" data-i18n="nav.menu">Menu</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </div>
+      <p class="footer-copy" data-i18n="footer.copy">© 2025 Ristorante Villa Franca · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+  <script src="menu.js"></script>
+</body>
+</html>
