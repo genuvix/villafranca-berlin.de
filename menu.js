@@ -7,11 +7,11 @@
 // ── CONFIG ──
 // TODO: point this at the deployed API once it's live (no trailing slash).
 // Local ASP.NET dev server default from launchSettings.json:
-const MENU_API_BASE_URL = 'https://localhost:7121';
+const MENU_API_BASE_URL = 'https://hostbuzz.app';
 
 // TODO: replace with Villa Franca's real restaurantId GUID.
 // Placeholder until the restaurant record exists / its ID is known.
-const RESTAURANT_ID = 'REPLACE_WITH_RESTAURANT_ID';
+const RESTAURANT_ID = '0c536df0-21fd-495d-dca6-08decc548aee';
 
 const menuTabsEl = document.getElementById('menuTabs');
 const tabsWrap   = document.getElementById('menuTabsWrap');
