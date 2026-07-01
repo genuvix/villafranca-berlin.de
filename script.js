@@ -191,12 +191,22 @@ function getEuropeBerlinOffsetHours(year, monthIndex, day) {
 
 // Combine the <input type="date"> and <select> time into the ISO 8601
 // string with explicit offset the backend expects, e.g. "2026-06-15T19:00:00+02:00".
+// function buildStartTimeIso(dateStr, timeStr) {
+//   const [y, m, d]   = dateStr.split('-').map(Number);
+//   const [hh, mm]    = timeStr.split(':').map(Number);
+//   const offsetHours = getEuropeBerlinOffsetHours(y, m - 1, d);
+//   const pad2 = n => String(n).padStart(2, '0');
+//   return `${y}-${pad2(m)}-${pad2(d)}T${pad2(hh)}:${pad2(mm)}:00+${pad2(offsetHours)}:00`;
+// }
 function buildStartTimeIso(dateStr, timeStr) {
-  const [y, m, d]   = dateStr.split('-').map(Number);
-  const [hh, mm]    = timeStr.split(':').map(Number);
-  const offsetHours = getEuropeBerlinOffsetHours(y, m - 1, d);
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const [hh, mm]  = timeStr.split(':').map(Number);
+  
   const pad2 = n => String(n).padStart(2, '0');
-  return `${y}-${pad2(m)}-${pad2(d)}T${pad2(hh)}:${pad2(mm)}:00+${pad2(offsetHours)}:00`;
+  
+  // 1. We completely remove the getEuropeBerlinOffsetHours calculation.
+  // 2. We append 'Z' to treat it strictly as a literal UTC time so nobody shifts it.
+  return `${y}-${pad2(m)}-${pad2(d)}T${pad2(hh)}:${pad2(mm)}:00Z`;
 }
 
 // The backend's *Utc fields are plain DateTime values serialized without a
