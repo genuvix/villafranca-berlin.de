@@ -213,8 +213,12 @@ function buildStartTimeIso(dateStr, timeStr) {
 // trailing "Z" or offset. Treat them as UTC explicitly when parsing.
 function parseUtc(value) {
   if (!value) return null;
-  const hasOffset = /Z$|[+-]\d\d:\d\d$/.test(value);
-  return new Date(hasOffset ? value : value + 'Z');
+  
+  // Strip out trailing 'Z' or explicit offset fragments (+02:00) 
+  // so JavaScript stops shifting the hours.
+  const cleanValue = value.replace(/Z$|[+-]\d\d:\d\d$/, '');
+  
+  return new Date(cleanValue);
 }
 
 function buildReservationPayload() {
@@ -283,9 +287,16 @@ function showReservationSuccess(data) {
   if (data && codeEl)    codeEl.textContent = data.confirmationCode || '';
   if (data && detailsEl) {
     const when = parseUtc(data.startTimeUtc);
+    
+    // Enforce 24-hour output pattern explicitly using 'de-DE' or hour12 configuration
     const whenText = when
-      ? when.toLocaleString(undefined, { dateStyle: 'long', timeStyle: 'short' })
+      ? when.toLocaleString(undefined, { 
+          dateStyle: 'long', 
+          timeStyle: 'short',
+          hour12: false // 👈 Forces 24-hour layout (00-23)
+        })
       : '';
+      
     detailsEl.textContent = [data.locationName, whenText, data.partySize ? `${data.partySize} guests` : '']
       .filter(Boolean)
       .join(' · ');
