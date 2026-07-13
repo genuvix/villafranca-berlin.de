@@ -101,7 +101,7 @@
 
       /* FOOTER */
       "footer.brand.sub": "RISTORANTE · BERLIN · SINCE 2000",
-      "footer.copy": "© 2025 Ristorante Villa Franca · All Rights Reserved",
+      "footer.copy": "© 2026 Ristorante Villa Franca · All Rights Reserved",
 
       /* MENU PAGE — HERO / TABS / HEADERS */
       "menuhero.eyebrow": "Our Culinary Journey",
@@ -362,7 +362,7 @@
 
       /* FOOTER */
       "footer.brand.sub": "RISTORANTE · BERLIN · SEIT 2000",
-      "footer.copy": "© 2025 Ristorante Villa Franca · Alle Rechte vorbehalten",
+      "footer.copy": "© 2026 Ristorante Villa Franca · Alle Rechte vorbehalten",
 
       /* MENU PAGE — HERO / TABS / HEADERS */
       "menuhero.eyebrow": "Unsere kulinarische Reise",
