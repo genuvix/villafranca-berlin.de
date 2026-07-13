@@ -101,7 +101,7 @@
 
       /* FOOTER */
       "footer.brand.sub": "RISTORANTE · BERLIN · SINCE 2000",
-      "footer.copy": "© 2026 Ristorante Villa Franca · All Rights Reserved",
+      "footer.copy": "© {year} Ristorante Villa Franca · All Rights Reserved",
 
       /* MENU PAGE — HERO / TABS / HEADERS */
       "menuhero.eyebrow": "Our Culinary Journey",
@@ -362,7 +362,7 @@
 
       /* FOOTER */
       "footer.brand.sub": "RISTORANTE · BERLIN · SEIT 2000",
-      "footer.copy": "© 2026 Ristorante Villa Franca · Alle Rechte vorbehalten",
+      "footer.copy": "© {year} Ristorante Villa Franca · Alle Rechte vorbehalten",
 
       /* MENU PAGE — HERO / TABS / HEADERS */
       "menuhero.eyebrow": "Unsere kulinarische Reise",
@@ -545,10 +545,16 @@
 
   function translate(lang, key) {
     var table = translations[lang] || translations[DEFAULT_LANG];
-    if (table && Object.prototype.hasOwnProperty.call(table, key)) return table[key];
+    if (table && Object.prototype.hasOwnProperty.call(table, key)) return interpolate(table[key]);
     var fallback = translations.en;
-    if (fallback && Object.prototype.hasOwnProperty.call(fallback, key)) return fallback[key];
+    if (fallback && Object.prototype.hasOwnProperty.call(fallback, key)) return interpolate(fallback[key]);
     return null;
+  }
+
+  // Replaces {year} with the current year, so the footer never goes stale.
+  function interpolate(val) {
+    if (typeof val !== "string") return val;
+    return val.replace(/\{year\}/g, new Date().getFullYear());
   }
 
   function applyLanguage(lang) {
