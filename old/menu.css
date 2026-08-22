@@ -1,0 +1,250 @@
+/* ============================================================
+   VILLA FRANCA – Menu Page CSS
+   ============================================================ */
+
+.menu-page { background: var(--bg); }
+
+/* ── MENU HERO ── */
+.menu-hero {
+  position: relative;
+  height: 55vh;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.menu-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(10,7,3,0.7), rgba(10,7,3,0.9)),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80') center/cover;
+}
+.menu-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 24px;
+  padding-top: var(--nav-h);
+}
+.menu-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 9vw, 100px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -1px;
+  margin: 8px 0 16px;
+}
+.menu-hero-title em { font-style: italic; color: var(--gold); }
+.menu-hero-sub {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: rgba(240,234,216,0.6);
+}
+
+/* ── TAB BAR ── */
+.menu-tabs-wrap {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 80;
+  background: rgba(13,10,6,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.menu-tabs-wrap::-webkit-scrollbar { display: none; }
+.menu-tabs {
+  display: flex;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.tab-btn {
+  flex-shrink: 0;
+  padding: 20px 24px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+  cursor: none;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--gold); }
+.tab-btn.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* ── MENU MAIN ── */
+.menu-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+/* ── MENU SECTION ── */
+.menu-section {
+  display: none;
+  padding-top: 72px;
+}
+.menu-section.active { display: block; }
+
+.menu-section-header {
+  text-align: center;
+  margin-bottom: 52px;
+  position: relative;
+}
+.menu-section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+.menu-section-header h2 span {
+  font-weight: 300;
+  color: var(--text-muted);
+}
+.menu-ornament {
+  font-size: 28px;
+  color: var(--gold);
+  opacity: 0.5;
+  margin-top: 12px;
+  display: block;
+}
+
+/* ── MENU SUBSECTION ── */
+.menu-subsection {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold);
+  margin: 40px 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── MENU GRID ── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+/* ── MENU ITEM ── */
+.menu-item {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+  position: relative;
+}
+.menu-item:nth-child(odd) { border-right: 1px solid var(--border); }
+.menu-item:hover { background: rgba(200,168,110,0.03); }
+
+.menu-item.featured::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+}
+.menu-item.featured { padding-left: 26px; }
+
+.mi-top {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.mi-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text);
+  flex-shrink: 0;
+}
+.mi-dots {
+  flex: 1;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--border) 0, var(--border) 3px,
+    transparent 3px, transparent 8px
+  );
+  margin-bottom: 4px;
+}
+.mi-price {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.mi-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── SPECIAL NOTE ── */
+.menu-special-note {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  background: rgba(200,168,110,0.03);
+}
+
+/* ── RESERVE CTA ── */
+.menu-reserve-cta {
+  position: relative;
+  padding: 100px 40px;
+  text-align: center;
+  overflow: hidden;
+}
+.menu-reserve-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(10,7,3,0.88), rgba(10,7,3,0.88)),
+    url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80') center/cover;
+}
+.menu-cta-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.menu-cta-inner .section-title { margin-bottom: 8px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .menu-tabs { padding: 0 16px; }
+  .tab-btn { padding: 16px 14px; font-size: 10px; letter-spacing: 1px; }
+  .menu-main { padding: 0 16px 60px; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .menu-item:nth-child(odd) { border-right: none; }
+  .menu-section-header h2 { font-size: 40px; }
+  .menu-hero { height: 45vh; }
+  .menu-reserve-cta { padding: 72px 20px; }
+}
+
+@media (max-width: 480px) {
+  .mi-name, .mi-price { font-size: 16px; }
+}

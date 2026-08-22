@@ -134,7 +134,7 @@ function renderMenu(data) {
 async function loadMenu() {
   showMenuLoading();
   try {
-    const res = await fetch(`https://hostbuzz.app/api/menu/0c536df0-21fd-495d-dca6-08decc548aee`, {
+    const res = await fetch(`${API_BASE_URL}/api/menu/${RESTAURANT_ID}`, {
       headers: { Accept: 'application/json' }
     });
     if (!res.ok) {
