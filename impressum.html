@@ -13,31 +13,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
-      *, body {
-          cursor: default !important;
-      }
+    *, body { cursor: default !important; }
+    .cursor-dot, .cursor-circle { display: none !important; }
+    body { visibility: visible !important; opacity: 1 !important; }
+    #preloader { display: none !important; }
 
-      .cursor-dot, .cursor-circle {
-          display: none !important;
-      }
-      body {
-          visibility: visible !important;
-          opacity: 1 !important;
-      }
-
-      #preloader {
-          display: none !important;
-      }
     .impressum-page {
       min-height: 100vh;
       padding: 140px 24px 80px;
       background: #0a0a0a;
       color: #e8e0d4;
     }
-    .impressum-inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
+    .impressum-inner { max-width: 720px; margin: 0 auto; }
     .impressum-inner h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 5vw, 3rem);
@@ -45,12 +32,7 @@
       color: #e8e0d4;
       margin-bottom: 8px;
     }
-    .impressum-inner .imp-divider {
-      width: 48px;
-      height: 1px;
-      background: #c9a96e;
-      margin: 16px 0 40px;
-    }
+    .imp-divider { width: 48px; height: 1px; background: #c9a96e; margin: 16px 0 40px; }
     .impressum-inner h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.2rem;
@@ -68,13 +50,8 @@
       color: #b0a898;
       margin: 0 0 8px;
     }
-    .impressum-inner a {
-      color: #c9a96e;
-      text-decoration: none;
-    }
-    .impressum-inner a:hover {
-      text-decoration: underline;
-    }
+    .impressum-inner a { color: #c9a96e; text-decoration: none; }
+    .impressum-inner a:hover { text-decoration: underline; }
     .impressum-back {
       display: inline-flex;
       align-items: center;
@@ -104,15 +81,34 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#reservation">Reserve</a></li>
-      <li><a href="index.html#seatplan">Seating</a></li>
-      <li><a href="menu.html" class="nav-cta">Menu</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#about" data-i18n="nav.about">Über uns</a></li>
+      <li><a href="index.html#reservation" data-i18n="nav.reserve">Reservieren</a></li>
+      <li><a href="index.html#seatplan" data-i18n="nav.seating">Sitzordnung</a></li>
+      <li><a href="menu.html" class="nav-cta" data-i18n="nav.menu">Speisekarte</a></li>
+      <li><a href="index.html#contact" data-i18n="nav.contact">Kontakt</a></li>
     </ul>
+    <div class="lang-switch" id="langSwitch">
+      <button type="button" class="lang-btn" data-lang="de">DE</button>
+      <span class="lang-sep">/</span>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
     <button class="nav-burger" id="navBurger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <ul>
+      <li><a href="index.html#about" data-i18n="nav.about">Über uns</a></li>
+      <li><a href="index.html#reservation" data-i18n="nav.reserve">Reservieren</a></li>
+      <li><a href="index.html#seatplan" data-i18n="nav.seating">Sitzordnung</a></li>
+      <li><a href="menu.html" data-i18n="nav.menu">Speisekarte</a></li>
+      <li><a href="index.html#contact" data-i18n="nav.contact">Kontakt</a></li>
+    </ul>
+    <div class="lang-switch lang-switch-mobile" id="langSwitchMobile">
+      <button type="button" class="lang-btn" data-lang="de">DE</button>
+      <span class="lang-sep">/</span>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
   </div>
 </nav>
 
@@ -121,32 +117,33 @@
   <div class="impressum-inner">
 
     <a href="index.html" class="impressum-back">
-      <i class="fa-solid fa-arrow-left"></i> Zurück zur Startseite
+      <i class="fa-solid fa-arrow-left"></i>
+      <span data-i18n="impressum.back">Zurück zur Startseite</span>
     </a>
 
-    <h1>Impressum</h1>
+    <h1 data-i18n="impressum.title">Impressum</h1>
     <div class="imp-divider"></div>
 
-    <h2>Angaben gemäß § 5 TMG</h2>
+    <h2 data-i18n="impressum.section.details">Angaben gemäß § 5 TMG</h2>
     <p>Burim Hasani</p>
     <p>Vorbergstraße 10</p>
     <p>10823 Berlin</p>
 
-    <h2>Kontakt</h2>
-    <p>Telefon: <a href="tel:+493023907730">+49 30 23907730</a></p>
+    <h2 data-i18n="impressum.section.contact">Kontakt</h2>
+    <p><span data-i18n="impressum.phone.label">Telefon:</span> <a href="tel:+493023907730">+49 30 23907730</a></p>
     <p>E-Mail: <a href="mailto:info@villafranca-berlin.de">info@villafranca-berlin.de</a></p>
 
-    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+    <h2 data-i18n="impressum.section.responsible">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
     <p>Burim Hasani</p>
     <p>Vorbergstraße 10</p>
     <p>10823 Berlin</p>
 
-    <h2>Urheberrecht</h2>
-    <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
-    <p>Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+    <h2 data-i18n="impressum.section.copyright">Urheberrecht</h2>
+    <p data-i18n="impressum.copyright.1">Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    <p data-i18n="impressum.copyright.2">Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</p>
 
-    <h2>Haftungsausschluss</h2>
-    <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
+    <h2 data-i18n="impressum.section.disclaimer">Haftungsausschluss</h2>
+    <p data-i18n="impressum.disclaimer">Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
 
   </div>
 </div>
@@ -156,17 +153,20 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <span class="logo-vf">Villa Franca</span>
-      <span class="logo-sub">RISTORANTE · BERLIN · SINCE 2000</span>
+      <span class="logo-sub" data-i18n="footer.brand.sub">RISTORANTE · BERLIN · SEIT 2000</span>
     </div>
     <div class="footer-links">
-      <a href="index.html#about">About</a>
-      <a href="index.html#reservation">Reserve</a>
-      <a href="menu.html">Menu</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="index.html#about" data-i18n="nav.about">Über uns</a>
+      <a href="index.html#reservation" data-i18n="nav.reserve">Reservieren</a>
+      <a href="menu.html" data-i18n="nav.menu">Speisekarte</a>
+      <a href="index.html#contact" data-i18n="nav.contact">Kontakt</a>
       <a href="impressum.html">Impressum</a>
     </div>
-    <p class="footer-copy">© 2026 Ristorante Villa Franca · All Rights Reserved</p>
+    <p class="footer-copy" data-i18n="footer.copy">© 2026 Ristorante Villa Franca · Alle Rechte vorbehalten</p>
   </div>
 </footer>
+
+<script src="i18n.js"></script>
+
 </body>
 </html>
