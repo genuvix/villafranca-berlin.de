@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <style>
+      #navbar {
+          border-top: none !important;
+      }
     *, body { cursor: default !important; }
     .cursor-dot, .cursor-circle { display: none !important; }
     body { visibility: visible !important; opacity: 1 !important; }
@@ -170,3 +173,24 @@
 
 </body>
 </html>
+<script>
+    // Navbar scroll effect only
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile burger menu
+    var burger = document.getElementById('navBurger');
+    var mobile = document.getElementById('navMobile');
+    if (burger && mobile) {
+        burger.addEventListener('click', function () {
+            mobile.classList.toggle('open');
+            burger.classList.toggle('open');
+        });
+    }
+</script>
