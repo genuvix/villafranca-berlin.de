@@ -27,6 +27,7 @@
       "hero.sub": "Private celebrations, fine dining & unforgettable evenings.<br>For 30 to 100 guests.",
       "hero.cta.reserve": "Reserve a Table",
       "hero.cta.menu": "View Menu",
+      "hero.cta.xmas": "View our Christmas Menu",
       "hero.scroll": "Scroll",
 
       /* STATS */
@@ -288,6 +289,7 @@
       "hero.sub": "Private Feiern, gehobene Küche & unvergessliche Abende.<br>Für 30 bis 100 Gäste.",
       "hero.cta.reserve": "Tisch reservieren",
       "hero.cta.menu": "Speisekarte ansehen",
+      "hero.cta.xmas": "Unser Weihnachtsangebot ansehen",
       "hero.scroll": "Scrollen",
 
       /* STATS */

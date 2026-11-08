@@ -17,6 +17,21 @@ window.addEventListener('load', () => {
   }, 1000);
 });
 
+// ── CHRISTMAS OFFER (visible until 31.12.2026 inclusive) ──
+(() => {
+  const btn   = document.getElementById('xmasBtn');
+  const modal = document.getElementById('xmasModal');
+  if (!btn || !modal) return;
+  if (new Date() >= new Date(2027, 0, 1)) { btn.remove(); modal.remove(); return; }
+
+  btn.hidden = false;
+  const open  = () => { modal.hidden = false; document.body.style.overflow = 'hidden'; };
+  const close = () => { modal.hidden = true;  document.body.style.overflow = ''; };
+  btn.addEventListener('click', open);
+  modal.addEventListener('click', (e) => { if (e.target !== modal.querySelector('img')) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+})();
+
 // ── CUSTOM CURSOR ──
 const dot    = document.querySelector('.cursor-dot');
 const circle = document.querySelector('.cursor-circle');

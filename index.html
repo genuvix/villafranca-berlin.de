@@ -87,12 +87,23 @@
         <a href="#reservation" class="btn-gold" data-i18n="hero.cta.reserve">Reserve a Table</a>
         <a href="menu.html" class="btn-ghost" data-i18n="hero.cta.menu">View Menu</a>
       </div>
+      <!-- Seasonal: shown by script.js only until 31.12.2026 -->
+      <button type="button" class="btn-xmas reveal" id="xmasBtn" hidden>
+        <i class="fa-solid fa-gift"></i>
+        <span data-i18n="hero.cta.xmas">View our Christmas Menu</span>
+      </button>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
       <span data-i18n="hero.scroll">Scroll</span>
     </div>
   </section>
+
+  <!-- CHRISTMAS POSTER MODAL -->
+  <div class="xmas-modal" id="xmasModal" role="dialog" aria-modal="true" aria-label="Weihnachtsangebot" hidden>
+    <button type="button" class="xmas-close" id="xmasClose" aria-label="Close">&times;</button>
+    <img src="weihnachten-2026.jpg" alt="Weihnachtsangebot – Ristorante Villa Franca" loading="lazy">
+  </div>
 
   <!-- STATS -->
   <section id="stats">
